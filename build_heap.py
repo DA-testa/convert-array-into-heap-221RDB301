@@ -1,4 +1,5 @@
 # python 3
+import os
 
 def build_heap(data):
     n = len(data)
@@ -32,6 +33,8 @@ def main():
         data = list(map(int, input("Enter the elements separated by space: ").split()))
     elif source == 'F':
         filename = input("Enter the filename: ")
+        path = './tests/'    
+        mape = os.path.join(path, filename)
         with open(filename, 'r') as f:
             n = int(f.readline())
             data = list(map(int, f.readline().split()))
