@@ -4,25 +4,23 @@ def build_heap(data):
     n = len(data)
     swaps = []
     for i in range(n // 2, -1, -1):
-        swaps += sift_down(i, data)
+        SiftDown(data, i, swaps)
     return swaps
 
 
-def sift_down(i, data):
-    n = len(data)
-    swaps = []
-    min_idx = i
-    l = 2 * i + 1
-    if l < n and data[l] < data[min_idx]:
-        min_idx = l
-    r = 2 * i + 2
-    if r < n and data[r] < data[min_idx]:
-        min_idx = r
-    if i != min_idx:
-        swaps.append((i, min_idx))
-        data[i], data[min_idx] = data[min_idx], data[i]
-        swaps += sift_down(min_idx, data)
-    return swaps
+def SiftDown(data, i, swaps):
+    size = len(data)
+    min_index = i
+    leftChild = 2 * i + 1
+    rightChild = 2 * i + 2 
+    if leftChild < size and data[leftChild] < data[min_index]:
+        min_index = leftChild
+    if rightChild < size and data[rightChild] < data[min_index]:
+        min_index = rightChild
+    if min_index != i:
+        swaps.append((i, min_index))
+        data[i], data[min_index] = data[min_index], data[i]
+        SiftDown(data, min_index, swaps)
 
 
 def main():
