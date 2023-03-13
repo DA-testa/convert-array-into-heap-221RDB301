@@ -26,11 +26,11 @@ def sift_down(i, data):
 
 
 def main():
-    source = input("Enter 'K' for keyboard input, 'F' for file input: ")
-    if source == 'k':
+    source = input("Enter 'I' for keyboard input, 'F' for file input: ")
+    if source == 'I':
         n = int(input("Enter the number of elements: "))
         data = list(map(int, input("Enter the elements separated by space: ").split()))
-    elif source == 'f':
+    elif source == 'F':
         filename = input("Enter the filename: ")
         with open(filename, 'r') as f:
             n = int(f.readline())
