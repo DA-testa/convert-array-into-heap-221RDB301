@@ -1,3 +1,5 @@
+# python 3
+
 def build_heap(data):
     n = len(data)
     swaps = []
