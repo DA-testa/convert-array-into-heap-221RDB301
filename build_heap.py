@@ -26,7 +26,6 @@ def sift_down(i, data):
 
 
 def main():
-    # input from keyboard or file
     source = input("Enter 'K' for keyboard input, 'F' for file input: ")
     if source == 'K':
         n = int(input("Enter the number of elements: "))
@@ -40,40 +39,15 @@ def main():
         print("Invalid input source")
         return
     
-    # input for heap type
-    heap_type = input("Enter 'I' for a min-heap, 'D' for a max-heap: ")
-    if heap_type not in ['I', 'D']:
-        print("Invalid heap type")
-        return
+    heap_type = 'I'
     
-    # check length of data
     assert len(data) == n
     
-    # build the heap and get swaps
     swaps = build_heap(data)
     
-    # output number of swaps and all swaps
     print(len(swaps))
     for i, j in swaps:
         print(i, j)
-    
-    # output sorted data
-    if heap_type == 'I':
-        sorted_data = []
-        for i in range(n):
-            sorted_data.append(data[0])
-            data[0] = data[-1]
-            data.pop()
-            swaps += sift_down(0, data)
-        print(" ".join(map(str, sorted_data)))
-    elif heap_type == 'D':
-        sorted_data = []
-        for i in range(n):
-            sorted_data.append(data[-1])
-            data[-1] = data[0]
-            data.pop(0)
-            swaps += sift_down(0, data)
-        print(" ".join(map(str, sorted_data[::-1])))
 
 if __name__ == "__main__":
     main()
