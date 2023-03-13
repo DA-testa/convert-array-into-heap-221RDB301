@@ -25,21 +25,15 @@ def SiftDown(data, i, swaps):
 
 def main():
     source = input("Enter 'I' for keyboard input, 'F' for file input: ")
-    if source == 'I':
+    if "I" in source:
         n = int(input("Enter the number of elements: "))
         data = list(map(int, input("Enter the elements separated by space: ").split()))
-    elif source == 'F':
-        filename = "tests/" + input("Enter the filename: ")
-        with open(filename, 'r') as f:
-            n = int(f.readline())
-            data = f.readline()
-            data = list(map(int, f.readline().split()))
     else:
-        print("Invalid input source")
-        return
-    
-    heap_type = 'I'
-    
+        if "F" in source:
+            filename = input("Enter the filename: ")
+            with open("./tests/" + filename, mode = "r") as file:
+                n = int(file.readline())
+                data = list(map(int, file.readline().split()))
     assert len(data) == n
     
     swaps = build_heap(data)
