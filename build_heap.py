@@ -1,38 +1,46 @@
-# python3
+def heapify(data, n, i, swaps):
+    largest = i  
+    l = 2 * i + 1  
+    r = 2 * i + 2  
+
+    if l < n and data[l] > data[largest]:
+        largest = l
+
+    if r < n and data[r] > data[largest]:
+        largest = r
+
+    if largest != i:
+        data[i], data[largest] = data[largest], data[i]
+        swaps.append((i, largest))
+        heapify(data, n, largest, swaps)
 
 
 def build_heap(data):
     swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
+    n = len(data)
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(data, n, i, swaps)
+    return swaps
 
 
+def heap_sort(data):
+    swaps = []
+    n = len(data)
+    for i in range(n - 1, 0, -1):
+        data[0], data[i] = data[i], data[0]
+        swaps.append((0, i))
+        heapify(data, i, 0, swaps)
     return swaps
 
 
 def main():
-    
-    # TODO : add input and corresponding checks
-    # add another input for I or F 
-    # first two tests are from keyboard, third test is from a file
-
-
-    # input from keyboard
     n = int(input())
     data = list(map(int, input().split()))
-
-    # checks if lenght of data is the same as the said lenght
     assert len(data) == n
-
-    # calls function to assess the data 
-    # and give back all swaps
-    swaps = build_heap(data)
-
-    # TODO: output how many swaps were made, 
-    # this number should be less than 4n (less than 4*len(data))
-
-
-    # output all swaps
+    swaps1 = build_heap(data)
+    swaps2 = heap_sort(data)
+    swaps = swaps1 + swaps2
+    assert len(swaps) <= 4 * n
     print(len(swaps))
     for i, j in swaps:
         print(i, j)
