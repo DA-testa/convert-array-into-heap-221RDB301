@@ -26,8 +26,8 @@ def SiftDown(data, i, swaps):
 def main():
     source = input("Enter 'I' for keyboard input, 'F' for file input: ")
     if "I" in source:
-        n = int(input("Enter the number of elements: "))
-        data = list(map(int, input("Enter the elements separated by space: ").split()))
+        n = int(input())
+        data = list(map(int, input().split()))
     else:
         if "F" in source:
             filename = input("Enter the filename: ")
